@@ -2,8 +2,10 @@ repos:
   - repo: https://github.com/doublify/pre-commit-rust
     rev: v1.0
     hooks:
-      - id: fmt          # rustfmt on each commit
-      - id: clippy       # linter — fails if there are warnings
+      - id: cargo-check          # compiles quickly, detects type errors
+      - id: fmt                  # rustfmt — fails if there are pending changes
+      - id: clippy               # linter — fails if there are warnings
+        args: ["--", "-D", "warnings"]
 
   - repo: https://github.com/compilerla/conventional-pre-commit
     rev: v3.4.0
