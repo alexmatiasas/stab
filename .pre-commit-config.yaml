@@ -2,12 +2,12 @@ repos:
   - repo: https://github.com/doublify/pre-commit-rust
     rev: v1.0
     hooks:
-      - id: fmt          # rustfmt en cada commit
-      - id: clippy       # linter — falla si hay warnings
+      - id: fmt          # rustfmt on each commit
+      - id: clippy       # linter — fails if there are warnings
 
   - repo: https://github.com/compilerla/conventional-pre-commit
     rev: v3.4.0
     hooks:
-      - id: conventional-pre-commit   # valida el mensaje del commit
+      - id: conventional-pre-commit   # validates the commit message
         stages: [commit-msg]
         args: [feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert]
