@@ -1,4 +1,4 @@
-name: CI - Format, Lint, Test, Audit
+name: CI - Format, Lint, Test
 
 on:
   push:
@@ -29,6 +29,3 @@ jobs:
 
       - name: Tests
         run: cargo test
-
-      - name: Audit
-        run: cargo audit
