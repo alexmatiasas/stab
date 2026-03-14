@@ -48,3 +48,38 @@ pub fn display_dataframe_json(df: &DataFrame) -> StabResult<()> {
     println!("{json}");
     Ok(())
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn make_test_df() -> DataFrame {
+        df![
+            "name" => ["Ana", "Bob", "Carlos"],
+            "age"  => [28i64, 34, 22],
+            "city" => ["CDMX", "Monterrey", "Oaxaca"]
+        ]
+        .unwrap()
+    }
+
+    #[test]
+    fn test_display_dataframe_does_not_panic() {
+        let df = make_test_df();
+        let result = display_dataframe(&df);
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_display_dataframe_json_does_not_panic() {
+        let df = make_test_df();
+        let result = display_dataframe_json(&df);
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_display_dataframe_empty() {
+        let df = DataFrame::empty();
+        let result = display_dataframe(&df);
+        assert!(result.is_ok());
+    }
+}
