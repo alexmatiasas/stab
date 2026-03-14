@@ -1,4 +1,4 @@
-use crate::display::table::display_dataframe;
+use crate::display::table::{display_dataframe, display_dataframe_json};
 use crate::errors::StabResult;
 use crate::io::reader::read_csv;
 use clap::{Args, Subcommand};
@@ -53,10 +53,7 @@ fn handle_read(args: ReadArgs) -> StabResult<()> {
 
     match args.output {
         OutputFormat::Table => display_dataframe(&df)?,
-        OutputFormat::Json => {
-            // TODO v0.1.0 — JSON output
-            println!("TODO: JSON output");
-        }
+        OutputFormat::Json => display_dataframe_json(&df)?,
     }
 
     Ok(())
