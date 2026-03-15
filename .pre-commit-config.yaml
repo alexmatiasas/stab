@@ -1,0 +1,15 @@
+repos:
+  - repo: https://github.com/doublify/pre-commit-rust
+    rev: v1.0
+    hooks:
+      - id: cargo-check          # compiles quickly, detects type errors
+      - id: fmt                  # rustfmt — fails if there are pending changes
+      - id: clippy               # linter — fails if there are warnings
+        args: ["--", "-D", "warnings"]
+
+  - repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v3.4.0
+    hooks:
+      - id: conventional-pre-commit   # validates the commit message
+        stages: [commit-msg]
+        args: [feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert]
