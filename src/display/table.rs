@@ -15,7 +15,7 @@ pub fn display_dataframe(df: &DataFrame) -> StabResult<()> {
                 .map(|name| {
                     Cell::new(name)
                         .add_attribute(Attribute::Bold)
-                        .fg(Color::AnsiValue(24))
+                        .fg(Color::Cyan)
                 })
                 .collect::<Vec<_>>(),
         );
@@ -24,7 +24,14 @@ pub fn display_dataframe(df: &DataFrame) -> StabResult<()> {
         let row: Vec<Cell> = df
             .get_column_names()
             .iter()
-            .map(|col| Cell::new(df.column(col).unwrap().get(i).unwrap().to_string()))
+            .map(|col| {
+                let value = df.column(col).unwrap().get(i).unwrap();
+                let text = match value {
+                    AnyValue::String(s) => s.to_string(),
+                    other => other.to_string(),
+                };
+                Cell::new(text)
+            })
             .collect();
 
         table.add_row(row);
